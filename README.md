@@ -2,14 +2,14 @@
 
 A modern e-commerce website built with **React**, **Node.js**, and **MongoDB**, featuring user login, product catalog, cart, and order management.
 
-## 🔧 Tech Stack
+##  Tech Stack
 
 - Frontend: React, React Router, Context API / Redux
 - Backend: Node.js, Express, MongoDB
 - Auth: JWT-based Login/Signup
 - UI: Tailwind CSS or custom styling
 
-## ✨ Features
+##  Features
 
 - Browse products by category
 - Add to cart and manage quantity
@@ -18,7 +18,7 @@ A modern e-commerce website built with **React**, **Node.js**, and **MongoDB**, 
 - JWT Auth for secure login
 - Admin panel for product management *(coming soon)*
 
-## 📦 Getting Started
+##  Getting Started
 
 ```bash
 # Frontend
