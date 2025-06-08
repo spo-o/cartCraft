@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, removeFromCart } from "../actions/cartAction";
 import { Link } from "react-router-dom";
+import { toast} from "react-toastify";
 
 function CartScreen(props) {
     const cart = useSelector(state => state.cart);
@@ -13,13 +14,16 @@ function CartScreen(props) {
     const dispatch = useDispatch();
     const removeFromCartHandler = productId => {
         dispatch(removeFromCart(productId));
+        toast.info("🗑️ Item removed from cart");
     };
+    
     useEffect(() => {
         window.scrollTo(0, 0);
         if (productId) {
             dispatch(addToCart(productId, qty));
+            toast.success("🛒 Item added to cart");
         }
-    }, []);
+    }, []);    
     const checkoutHandler = () => {
         props.history.push("/signin?redirect=shipping");
     };

@@ -13,6 +13,9 @@ import ProductsScreen from "./screens/ProductsScreen";
 import ShipppingScreen from "./screens/ShippingScreen";
 import PaymentScreen from "./screens/PaymentScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 import logo from "./Images/logo.png";
 
@@ -27,6 +30,7 @@ function App() {
     };
     return (
         <BrowserRouter>
+            <ToastContainer position="bottom-right" autoClose={3000} />
             <div className="grid-container">
                 <header className="header">
                     <div className="brand">
