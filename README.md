@@ -1,4 +1,4 @@
-# 🛒 codeCraft – E-Commerce Web App
+# codeCraft – E-Commerce Web App
 
 A modern e-commerce website built with **React**, **Node.js**, and **MongoDB**, featuring user login, product catalog, cart, and order management.
 
