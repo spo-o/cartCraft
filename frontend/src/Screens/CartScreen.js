@@ -37,10 +37,15 @@ function CartScreen(props) {
                         <div>Price</div>
                     </li>
                     {cartItems.length === 0 ? (
-                        <div>
-                            <h1>Cart is Empty.</h1>
+                        <div style={{ textAlign: "center", padding: "2rem" }}>
+                            <h1>Your cart is empty 🛒</h1>
+                            <p>Looks like you haven't added anything yet.</p>
+                            <Link to="/" className="button secondary" style={{ marginTop: "1rem", display: "inline-block" }}>
+                                ← Start Shopping
+                            </Link>
                         </div>
                     ) : (
+
                         cartItems.map(item => (
                             <li>
                                 <div className="cart-image">
