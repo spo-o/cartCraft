@@ -1,8 +1,8 @@
-import React from "react";
-import "./App.css";
-
+import React, { useState } from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
@@ -13,95 +13,84 @@ import ProductsScreen from "./screens/ProductsScreen";
 import ShipppingScreen from "./screens/ShippingScreen";
 import PaymentScreen from "./screens/PaymentScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
 
 import logo from "./Images/logo.png";
+import "./App.css";
+import "./index.css";
 
 function App() {
-    const userSignin = useSelector(state => state.userSignin);
-    const { userInfo } = userSignin;
-    const openmenu = () => {
-        document.querySelector(".sidebar").classList.add("open");
-    };
-    const closemenu = () => {
-        document.querySelector(".sidebar").classList.remove("open");
-    };
-    return (
-        <BrowserRouter>
-            <ToastContainer position="bottom-right" autoClose={3000} />
-            <div className="grid-container">
-                <header className="header">
-                    <div className="brand">
-                        <button onClick={openmenu}>&#9776;</button>
-                        <Link to="/">
-                            Origami
-                            <img src={logo} className="logo" />
-                        </Link>
-                    </div>
-                    <div className="header-links">
-                        <span>
-                            <Link to="/cart">
-                                <span class="material-icons">
-                                    shopping_cart
-                                </span>
-                            </Link>
-                        </span>
-                        <span>
-                            {userInfo ? (
-                                <Link to="/profile">{userInfo.name}</Link>
-                            ) : (
-                                <Link to="/signin">
-                                    <span class="material-icons">login</span>
-                                </Link>
-                            )}
-                        </span>
-                    </div>
-                </header>
-                <aside className="sidebar">
-                    <h3>Categories</h3>
-                    <button
-                        className="sidebar-close-button"
-                        onClick={closemenu}
-                    >
-                        <span class="material-icons">arrow_back_ios</span>
-                    </button>
-                    <ul>
-                        <li>
-                            <a href="index.html">Mens</a>
-                        </li>
-                        <li>
-                            <a href="index.html">Women</a>
-                        </li>
-                        <li>
-                            <a href="index.html">Unisex</a>
-                        </li>
-                        <li>
-                            <a href="index.html">Children</a>
-                        </li>
-                    </ul>
-                </aside>
-                <main className="main">
-                    <div className="content">
-                        <Route path="/products" component={ProductsScreen} />
-                        <Route path="/shipping" component={ShipppingScreen} />
-                        <Route path="/payment" component={PaymentScreen} />
-                        <Route
-                            path="/placeorder"
-                            component={PlaceOrderScreen}
-                        />
-                        <Route path="/signin" component={SigninScreen} />
-                        <Route path="/register" component={RegisterScreen} />
-                        <Route path="/product/:id" component={ProductScreen} />
-                        <Route path="/" exact={true} component={HomeScreen} />
-                        <Route path="/cart/:id?" component={CartScreen} />
-                    </div>
-                </main>
-                <footer className="footer">All right reserved</footer>
-            </div>
-        </BrowserRouter>
-    );
+  const [darkMode, setDarkMode] = useState(false);
+  const toggleDarkMode = () => setDarkMode(!darkMode);
+
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
+
+  const openmenu = () => {
+    document.querySelector(".sidebar").classList.add("open");
+  };
+  const closemenu = () => {
+    document.querySelector(".sidebar").classList.remove("open");
+  };
+
+  return (
+    <BrowserRouter>
+      <ToastContainer position="bottom-right" autoClose={3000} />
+      <div className={`grid-container ${darkMode ? "dark" : ""}`}>
+        <header className="header">
+          <div className="brand">
+            <button onClick={openmenu}>&#9776;</button>
+            <Link to="/">
+              Origami <img src={logo} className="logo" alt="logo" />
+            </Link>
+          </div>
+          <div className="header-links">
+            <button onClick={toggleDarkMode} className="dark-mode-toggle">
+              {darkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
+            </button>
+            <Link to="/cart">
+              <span className="material-icons">shopping_cart</span>
+            </Link>
+            {userInfo ? (
+              <Link to="/profile">{userInfo.name}</Link>
+            ) : (
+              <Link to="/signin">
+                <span className="material-icons">login</span>
+              </Link>
+            )}
+          </div>
+        </header>
+
+        <aside className="sidebar">
+          <h3>Categories</h3>
+          <button className="sidebar-close-button" onClick={closemenu}>
+            <span className="material-icons">arrow_back_ios</span>
+          </button>
+          <ul>
+            <li><a href="index.html">Mens</a></li>
+            <li><a href="index.html">Women</a></li>
+            <li><a href="index.html">Unisex</a></li>
+            <li><a href="index.html">Children</a></li>
+          </ul>
+        </aside>
+
+        <main className="main">
+          <div className="content">
+            <Route path="/products" component={ProductsScreen} />
+            <Route path="/shipping" component={ShipppingScreen} />
+            <Route path="/payment" component={PaymentScreen} />
+            <Route path="/placeorder" component={PlaceOrderScreen} />
+            <Route path="/signin" component={SigninScreen} />
+            <Route path="/register" component={RegisterScreen} />
+            <Route path="/product/:id" component={ProductScreen} />
+            <Route path="/" exact component={HomeScreen} />
+            <Route path="/cart/:id?" component={CartScreen} />
+          </div>
+        </main>
+
+        <footer className="footer">All right reserved</footer>
+      </div>
+    </BrowserRouter>
+  );
 }
 
 export default App;
