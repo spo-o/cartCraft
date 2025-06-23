@@ -19,6 +19,7 @@ import "./App.css";
 import "./index.css";
 
 function App() {
+    /*dark mode toggle*/
   const [darkMode, setDarkMode] = useState(false);
   const toggleDarkMode = () => setDarkMode(!darkMode);
 
